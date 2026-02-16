@@ -160,6 +160,10 @@
 </head>
 <body>
 
+    <audio id="musica" loop hidden>
+        <source src="cancion.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="card">
         <div id="start-screen">
             <div class="start-button" onclick="startAnimation()">
@@ -219,6 +223,13 @@
         function startAnimation() {
             if (animationStarted) return;
             animationStarted = true;
+
+            // --- REPRODUCIR LA CANCIÓN ---
+            const audio = document.getElementById('musica');
+            if (audio) {
+                audio.play().catch(error => console.log("El navegador bloqueó el audio", error));
+            }
+
             startScreen.style.opacity = '0';
             setTimeout(() => {
                 startScreen.style.display = 'none';
